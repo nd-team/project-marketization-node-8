@@ -1,0 +1,57 @@
+<div class="material-lists">
+    <div class="material-body">
+        <ul>
+            <li ng-repeat="lists in basicLists.data"  style="display: {{lists._delete?'none':'block'}};">
+                <div class="box">
+                    <h1 class="box-head">
+                        <p class="head-right">
+                            <span>项目组/部门</span>
+                            <i>{{::lists.area}}</i>
+                        </p>
+                        <p class="check-two" >
+                            <!--<input type="checkbox" checked="checked" class="checked-none" data-style="checked" >-->
+                            <span class="tick {{lists._selectList?'selectList':''}}" ng-click="selectList(lists)"></span>
+                        </p>
+                    </h1>
+                    <div class="box-bottom">
+                        <h2 class="bottom-left">
+                            <p>物质类型</p>
+                            <p>设备名称</p>
+                            <p>下限值</p>
+                            <p>上限值</p>
+                        </h2>
+                        <h2 class="bottom-right">
+                            <p>{{::lists.materialType}}</p>
+                            <p>{{::lists.deviceName}}</p>
+                            <p>{{::lists.lowerValue}}</p>
+                            <p>{{::lists.upperValue}}</p>
+                        </h2>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+        <div class="module">
+            <div class="see-module">
+                <p class="see-type">体现类型</p>
+                <p class="see-description"></p>
+                <button class="btn" modclose>关闭</button>
+            </div>
+        </div>
+        <footer class="footer">
+            <pagination count="abili.itemsCount" take="abili.take" activate="abili.activatePage"></pagination>
+        </footer>
+    </div>
+    <div class="delete mod" ng-show="delShow">
+        <div class="del-head">
+            <h5>温馨提示</h5>
+        </div>
+        <div class="del-con">
+            <p>确定要删除这条数据？</p>
+            <div class="btn">
+                <button ng-click="delFn()">确定</button>
+                <button ng-click="cancel()">取消</button>
+            </div>
+        </div>
+    </div>
+<div id="modalbg" ng-show="delShow"></div>
