@@ -20,7 +20,7 @@
         </a>
     </li>
     <li>
-        <a href="javascript:void(0)" class="inactive">
+        <a href="javascript:void(0)"  ng-click="notices()" class="inactive {{ notice?'inactives':''}}">
             <i class="list-icon">
                 <svg role="img" class="notice">
                     <use xlink:href="#notice"></use>
@@ -28,7 +28,7 @@
             </i>
             <i class="list-text">公告通知</i>
         </a>
-        <ul style="display: block" class="inactive-line line-message">
+        <ul class="inactive-line line-message" ng-show="notice">
             <li><a>个人消息<i class="unread"></i></a></li>
             <li><a>活动公告<i class="unread"></i></a></li>
             <li><a>综合资源部<i class="unread"></i></a></li>
@@ -38,7 +38,7 @@
         </ul>
     </li>
     <li>
-        <a href="javascript:void(0)" class="inactive">
+        <a href="javascript:void(0)"  ng-click="knows()" class="inactive {{know?'inactives':''}}">
             <i class="list-icon">
                 <svg role="img" class="know">
                     <use xlink:href="#know"></use>
@@ -46,50 +46,9 @@
             </i>
             <i class="list-text">知此知彼</i>
         </a>
-        <ul style="display: block" class="inactive-line">
-            <li>
-                <a href="#" class="inactive active">战略蓝图</a>
-                <ul class="list-children">
-                    <li><a href="#">办公室</a></li>
-                    <li><a href="#">办公室2</a></li>
-                    <li><a href="#">办公室3</a></li>
-                    <li><a href="#">办公室4</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="inactive active">资质库</a>
-                <ul class="list-children">
-                    <li><a href="#">办公室</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="inactive active">简介管理</a>
-                <ul class="list-children">
-                    <li><a href="#">办公室</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="inactive active">企业文化</a>
-                <ul class="list-children">
-                    <li><a href="#">办公室</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="inactive active">组织结构</a>
-                <ul class="list-children">
-                    <li><a href="#">办公室</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="inactive active">人员编制</a>
-                <ul class="list-children">
-                    <li><a href="#">办公室</a></li>
-                </ul>
-            </li>
-        </ul>
     </li>
     <li>
-        <a href="javascript:void(0)" class="inactive">
+        <a href="javascript:void(0)" ng-click="archives()" class="inactive {{archive?'inactives':''}}">
             <i class="list-icon">
                 <svg role="img" class="archives">
                     <use xlink:href="#archives"></use>
@@ -97,23 +56,36 @@
             </i>
             <i class="list-text">档案库</i>
         </a>
-        <ul style="display: block" class="inactive-line">
-            <li><a href="javascript:void(0)">办公室</a></li>
-        </ul>
     </li>
     <li>
-        <a href="javascript:void(0)" class="inactive">
+        <a href="javascript:void(0)"  ng-click="material()"  class="inactive {{storage?'inactives':''}}">
             <i class="list-icon">
                 <svg role="img" class="archives">
                     <use xlink:href="#archives"></use>
                 </svg>
             </i>
-            <i class="list-text">物资管理</i>
+            <i class="list-text ">物资管理</i>
         </a>
-        <ul style="display:block" class="inactive-line line-message">
-            <li><a href="javascript:void(0)">物资分析</a></li>
-            <li><a href="javascript:void(0)">物资入库</a></li>
-            <li class="unreadbg"><a href="/pages/material/department.html">物资领用</a></li>
+        <ul  class="inactive-line line-message " ng-show="storage">
+            <li ng-repeat="list in showsList">
+                <a href="javascript:void(0)"  ng-click="toggle()"  class="inactive {{visible?'inactives':'active'}}">{{list.item}}</a>
+                <ul class="list-children"   ng-repeat="menuInfo in list.menuList" ng-show="visible">
+                    <li ng-click="navClass(menuInfo.msg)"  ng-class="{'active':navCla==menuInfo.msg}" ui-sref="_root.material.mater.list[12]">
+                        <a href="#">{{menuInfo.name1}}</a>
+                    </li>
+                    <li ng-click="navClass(menuInfo.msg) " ng-class="{'active':navCla==menuInfo.msg}"  ui-sref="_root.material.warn.list[12]">
+                        <a href="#">{{menuInfo.name2}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-repeat="list in showsList1">
+                <a href="javascript:void(0)" ng-click="toggle1()"  class="inactive {{visible1?'inactives':'active'}}">{{list.item}}</a>
+                <ul class="list-children"   ng-repeat="menuInfo in list.menuList" ng-show="visible1">
+                    <li ng-click="navClass(menuInfo.msg)"  ng-class="{'active':navCla==menuInfo.msg}" ui-sref="_root.material.setting.list[12]">
+                        <a href="#">{{menuInfo.name1}}</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </li>
 </ul>

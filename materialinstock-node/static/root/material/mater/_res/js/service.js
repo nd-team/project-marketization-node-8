@@ -1,47 +1,58 @@
-var app = angular.module('warnServer',[]);
-app.factory('warnSer',function ($http) {
+var app = angular.module('materServer',[]);
+app.factory('materSer',function ($http) {
     return {
         menuPermission:menuPermission,
-        listContent : listContent,
-        countContent:countContent,
-        addContent:addContent,
+        listMater : listMater,
+        countMater:countMater,
+        addMater:addMater,
         getAare:getAare,
-        findwarnId:findwarnId,
-        editWarn:editWarn,
-        WarnDelete:WarnDelete
+        findMaterId:findMaterId,
+        editMater:editMater,
+        MaterDelete:MaterDelete,
+        getPeople:getPeople,
+        getTime:getTime
+
     };
     function menuPermission(data) {
-        return $http.get('/stockwarning/guidePermission/'+data);
+        return $http.get('/materialinstock/guidePermission/'+data);
     }
-    function listContent(data) {
-        return $http.get('/stockwarning/list',{
+    function listMater(data) {
+        return $http.get('/materialinstock/list',{
             params:data
         })
     }
-    function countContent(){
-        return $http.get('/stockwarning/count')
+    function countMater(){
+        return $http.get('/materialinstock/count')
     }
     //添加
-    function addContent(data){
-        return $http.post('/stockwarning/add',data)
+    function addMater(data){
+        return $http.post('/materialinstock/add',data)
     }
     //获取所有地区
     function getAare(){
         return $http.get('/materialinstock/allArea')
     }
+    //获取申购人
+    function getPeople(){
+        return $http.get('/materialinstock/getRequisitioner')
+    }
+    //获取物资入库申购日期
+    function getTime(){
+        return $http.get('/materialinstock/getBuyDate')
+    }
     //id查询
-    function findwarnId(data){
-        return $http.get('/stockwarning/stockwarning',{
+    function findMaterId(data){
+        return $http.get('/materialinstock/materialinstock',{
             params:data
         })
     }
     //编辑
-    function editWarn(data){
-        return $http.post('/stockwarning/edit',data)
+    function editMater(data){
+        return $http.post('/materialinstock/edit',data)
     }
     //删除
-    function WarnDelete(data){
-        return $http.get('/stockwarning/delete',{
+    function MaterDelete(data){
+        return $http.get('/materialinstock/delete',{
             params: data
         })
     }

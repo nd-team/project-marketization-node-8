@@ -186,6 +186,119 @@ module.exports = function(){
         };
         return request(options);
     };
+    //设置物资入库导航权限
+    this.materPermission = function(argvs){
+        var options = {
+            method : 'GET',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/guidePermission?guideAddrStatus=`+argvs.name,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
+    //物资入库列表
+    this.materList = function(argvs){
+        var options = {
+            method : 'GET',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/list?limit=10&page=${argvs.page}`,
+            headers : {
+                userToken:argvs.token
+            }
+        };
+
+        return request(options);
+    };
+    // 添加物资入库
+    this.materAdd = function(argvs){
+        var options = {
+            method : 'POST',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/add`,
+            form:argvs,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
+
+    //物资入库获取总条数
+    this.getmaterTotal = function(argvs){
+        var options = {
+            method : 'GET',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/count${urlEncode(argvs,true)}`,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
+    //物资入库获取ID
+    this.findmaterId = function(argvs){
+        var options = {
+            method : 'GET',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/materialinstock/${argvs.id}`,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
+    //物资入库 编辑
+    this.materEdit = function(argvs){
+        var options = {
+            method : 'PUT',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/edit`,
+            form:argvs,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
+    //物资入库删除
+    this.materDelete = function(argvs){
+        var options = {
+            method : 'DELETE',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/delete/${argvs.id}`,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
+    ////获取获取申购人
+    this.getPeole= function(argvs){
+        var options = {
+            method : 'GET',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/getRequisitioner`,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        console.log(argvs)
+        return request(options);
+    };
+    //获取物资入库申购日期
+    this.getBuyDate = function(argvs){
+        var options = {
+            method : 'GET',
+            timeout : 3000,
+            uri : config()['rurl'] + `/materialinstock/v1/getBuyDate`,
+            headers:{
+                userToken:argvs.userToken
+            }
+        };
+        return request(options);
+    };
 
     return this;
 };

@@ -1,4 +1,4 @@
-var app = angular.module('warn', [{
+var app = angular.module('mater', [{
     files:[
         "root/material/mater/_res/js/service.js"
     ]
@@ -43,12 +43,6 @@ app.controller('materCtrl',function ($scope,$state) {
     if(!$scope.page){
         $scope.page = $location.search().page;
     }
-    $scope.delete = function(){
-        if($scope.idListd){
-            $state.go('root.material.mater.list[12]',{id:$scope.idListd,name:'delete',page:$scope.page});
-            $scope.menuClass = 'deleteMenu';
-        }
-    };
     $scope.list = function(){
         $scope.menuClass = 'listMenu';
         $scope.idList = '';

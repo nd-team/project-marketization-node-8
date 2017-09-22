@@ -1,11 +1,11 @@
 var app = angular.module('mater', []);
 app.config(function($provide, $stateProvider){
     $stateProvider.state("root.material.mater", {
-        url : "/warn",
+        url : "/mater",
         views : {
             "content@root.material" : {
                 templateUrl : "root/material/mater/_res/html/index.html",
-                controller:"warnCtrl"
+                controller:"materCtrl"
             },"menu@root.material" : {
                 templateUrl : "root/material/mater/_res/html/menu.html",
                 controller:"materMenuCtrl"
@@ -32,7 +32,7 @@ app.config(function($provide, $stateProvider){
         views:{
             "content@root.material.mater":{
                 templateUrl : "root/material/mater/edit/_res/html/index.html",
-                controller:'warnEditCtrl'
+                controller:'materEditCtrl'
             }
         }
     })
