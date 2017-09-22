@@ -1,44 +1,149 @@
 <div class="add" verify-scope="tipStyle: 1">
     <ul class="input-list">
         <li>
-            <label>地区<i>*</i></label>
+            <label>项目组/部门<i>*</i></label>
             <div class="sele side">
-                <select class="sele" ng-model="warnAdd.area">
+                <select class="sele" ng-model="MaterAdd.projectGroup">
                     <option value="" disabled></option>
-                    <option  ng-repeat="AllO in AllAare">{{AllO}}</option>
                 </select>
-                <input type="text"  class="inputDom" ng-model="warnAdd.area" >
+                <input type="text"  class="inputDom" ng-model="MaterAdd.projectGroup" >
             </div>
         </li>
         <li>
-            <label>项目组/部门<i>*</i></label>
-            <div class="sele side">
-                <select class="sele"  ng-model="warnAdd.projectGroup">
+            <label>入库类型<i>*</i></label>
+                <select class="sele"  ng-model="MaterAdd.instockType">
                     <option value="" disabled></option>
+                    <option value="BUY" >购买入库</option>
+                    <option value="LEND">外借入库</option>
+                    <option value="TRANSFER">调动入库</option>
                 </select>
-                <input type="text"  class="inputDom" ng-model="warnAdd.projectGroup" ng-verify="{}" >
-            </div>
+
+        </li>
+        <li>
+            <label>物资名称<i>*</i></label>
+            <input type="text" ng-model="MaterAdd.materialName" ng-verify="{}">
         </li>
         <li>
             <label>物资类型<i>*</i></label>
-            <input type="text" ng-model="warnAdd.materialType" ng-verify="{}">
+            <div class="sele side">
+                <select class="sele" ng-model="MaterAdd.materialType">
+                    <option value="" disabled></option>
+                </select>
+                <input type="text"  class="inputDom" ng-model="MaterAdd.materialType" >
+            </div>
         </li>
         <li>
-            <label>设备名称<i>*</i></label>
-            <input type="text" ng-model="warnAdd.deviceName" ng-verify="{}" >
+            <label>物资型号<i>*</i></label>
+            <input type="text" ng-model="MaterAdd.materialModel" ng-verify="{}" >
         </li>
         <li>
-            <label>下限值<i>*</i></label>
-            <input type="number"   ng-model="warnAdd.lowerValue"  ng-verify="{}">
+            <label>物资状态<i>*</i></label>
+            <select class="sele"  ng-model="MaterAdd.materialState">
+                <option value="" disabled></option>
+                <option value="INTACT" >完好</option>
+                <option value="MANUAL_DAMAGE">人为损坏</option>
+                <option value="NATURAL_DAMAGE" >自然损坏</option>
+                <option value="REPAIRING">维修中</option>
+                <option value="SCRAP" >已报废</option>
+            </select>
         </li>
         <li>
-            <label>上限值<i>*</i></label>
-            <input type="number"  ng-model="warnAdd.upperValue"  ng-verify="{}" >
+            <label>数量<i>*</i></label>
+            <input type="number"  name="points" max="1"    ng-model="MaterAdd.quantity"  ng-verify="{}">
+        </li>
+        <li>
+            <label>单位<i>*</i></label>
+            <input type="text" ng-model="MaterAdd.unit" ng-verify="{}">
+        </li>
+        <li>
+            <label>单价<i>*</i></label>
+            <input type="number"  name="points" min="0.01"    ng-model="MaterAdd.unitPrice"  ng-verify="{}">
+        </li>
+        <li>
+            <label>总额<i>*</i></label>
+            <input type="number" name="points" min="0.01"  ng-model="MaterAdd.totalSum" ng-verify="{}">
+        </li>
+        <li>
+            <label>购买人<i>*</i></label>
+            <div class="sele side">
+                <select class="sele" ng-model="MaterAdd.purchaser">
+                    <option value="" disabled></option>
+                </select>
+                <input type="text"  class="inputDom" ng-model="MaterAdd.purchaser" >
+            </div>
+        </li>
+        <li>
+            <label>购买日期<i>*</i></label>
+            <input type="text" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" class="date-icon purchaseDate" ng-model="MaterAdd.purchaseDate">
+        </li>
+        <li>
+            <label>途径<i>*</i></label>
+            <input type="text" ng-model="MaterAdd.approach" ng-verify="{}">
+        </li>
+        <li>
+            <label>存储地区<i>*</i></label>
+            <div class="sele side">
+                <select class="sele" ng-model="MaterAdd.storageArea">
+                    <option value="" disabled></option>
+                    <option  ng-repeat="AllO in AllAare">{{AllO}}</option>
+                </select>
+                <input type="text"  class="inputDom" ng-model="MaterAdd.storageArea" >
+            </div>
+        </li>
+        <li>
+            <label>入库日期<i>*</i></label>
+            <input type="text" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" class="date-icon instockDate" ng-model="MaterAdd.instockDate">
+        </li>
+        <li>
+            <label>购买网址/店铺<i>*</i></label>
+            <input type="text" ng-model="MaterAdd.buyWebsites" ng-verify="{}">
+        </li>
+
+        <li>
+            <label>申购日期<i>*</i></label>
+            <input type="text"  onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" class="date-icon buyDate" ng-model="MaterAdd.buyDate">
+        </li>
+        <li>
+            <label>申购人</label>
+            <div class="sele side">
+                <select class="sele" ng-model="MaterAdd.requisitioner">
+                    <option value="" disabled></option>
+                    <option  ng-repeat="AllT in AllPeople">{{AllT}}</option>
+                </select>
+                <input type="text"  class="inputDom" ng-model="MaterAdd.requisitioner" >
+            </div>
+        </li>
+        <li>
+            <label>外借人</label>
+            <div class="sele side">
+                <select class="sele" ng-model="MaterAdd.lender">
+                    <option value="" disabled></option>
+                </select>
+                <input type="text"  class="inputDom" ng-model="MaterAdd.lender" >
+            </div>
+        </li>
+        <li>
+            <label>外借地</label>
+            <div class="sele side">
+                <select class="sele" ng-model="MaterAdd.lendArea">
+                    <option value="" disabled></option>
+                    <option  ng-repeat="AllO in AllAare">{{AllO}}</option>
+                </select>
+                <input type="text"  class="inputDom" ng-model="MaterAdd.lendArea" >
+            </div>
+        </li>
+        <li>
+            <label>外借日期</label>
+            <input type="text"  onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" class="date-icon lendDate" ng-model="MaterAdd.lendDate">
+        </li>
+        <li>
+            <label>备注</label>
+            <input type="text" ng-model="MaterAdd.comment" >
         </li>
     </ul>
     <p class="input-bottom">
         <button class="cancel" ng-click="cancel()">取消</button>
-        <button   ng-verify="{control:'myform'}" class="sure"  ng-click="warnAddFun()" >确定</button>
+        <button   ng-verify="{control:'myform'}"   ng-click="addMaterFun()" >确定</button>
     </p>
 
 </div>

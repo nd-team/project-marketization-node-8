@@ -205,6 +205,121 @@ module.exports = function(){
                 $self.body=error.error;
                 console.error(error.error);
             }));
+    }).get('/materialinstock/guidePermission/:guideAddrStatus', function*(){ //物资入库设定菜单权限
+        var $self = this;
+        var page = {name:$self.params.guideAddrStatus,userToken:$self.cookies.get('token')};
+        yield (server().materPermission(page)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+            }));
+    }).get('/materialinstock/list', function*(){  //物资入库列表
+            var $self = this;
+            var page = $self.request.query;
+            page.token = this.cookies.get('token');
+            yield (server().materList(page)
+                .then((parsedBody) =>{
+                    var responseText = JSON.parse(parsedBody);
+                    $self.body = responseText;
+                }).catch((error) =>{
+                    $self.set('Content-Type','application/json;charset=utf-8');
+                    $self.body=error.error;
+                    console.error(error.error);
+                }));
+        }).post('/materialinstock/add', function*(){//物资入库添加
+        var $self = this;
+        var addData = $self.request.body;
+        addData.userToken = $self.cookies.get('token');
+        yield (server().materAdd(addData)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
+    }).post('/materialinstock/edit', function*(){ //物资入库编辑
+        var $self = this;
+        var editData = $self.request.body;
+        editData.userToken = $self.cookies.get('token');
+        yield (server().materEdit(editData)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
+    }).get('/materialinstock/delete', function*(){//删除物资入库
+        var $self = this;
+        var deleteData = $self.request.query;
+        deleteData.userToken = $self.cookies.get('token');
+        yield (server().materDelete(deleteData)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
+    }).get('/materialinstock/materialinstock', function*(){//ID查询库存预警
+        var $self = this;
+        var findById = $self.request.query;
+        findById.userToken = $self.cookies.get('token');
+        yield (server().findmaterId(findById)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
+    }).get('/materialinstock/count', function*(){//获取库存预警总条数
+        var $self = this;
+        var count = $self.request.query;
+        count.userToken = $self.cookies.get('token');
+        yield (server().getmaterTotal(count)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
+    }).get('/materialinstock/getRequisitioner', function*(){//获取获取申购人
+        var $self = this;
+        var count = $self.request.query;
+        count.userToken = $self.cookies.get('token');
+        yield (server().getPeole(count)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
+    }).get('/materialinstock/getBuyDate', function*(){//获取物资入库申购日期
+        var $self = this;
+        var count = $self.request.query;
+        count.userToken = $self.cookies.get('token');
+        yield (server().getBuyDate(count)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type','application/json;charset=utf-8');
+                $self.body=error.error;
+                console.error(error.error);
+            }));
     })
     return router;
 };

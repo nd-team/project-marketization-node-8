@@ -32,7 +32,8 @@ app.directive('resize', function ($window) {
             scope.windowHeight = newValue.h;
             scope.style = function () {
                 return {
-                    'height': (newValue.h - 240) + 'px',
+                    'height': (newValue.h - 50) + 'px',
+                    /*'height': (newValue.h -10) + 'px',*/
                 };
             };
         }, true);

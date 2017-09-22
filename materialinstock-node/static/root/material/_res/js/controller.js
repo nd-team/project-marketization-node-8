@@ -13,12 +13,53 @@ app.controller('materialCtrl', function ($scope,$state) {
         $scope.$broadcast('pageId',msg)
     });
 }).controller('navCtrl',function($scope,$state,$location,materialSer){
-    $scope.navCla='warn';
+    $scope.navCla='mater';
     var active = $location.path().split('/')[3];
-    $scope.navCla=active?active:'warn';
-    $scope.navClass= function(name){
-        $scope.navCla=name;
+    $scope.navCla=active?active:'mater';
+    $scope.navClass = function(name){
+        $scope.navCla = name;
+        $scope.$emit('isId',true);//每次切换页面更新搜索值
     };
+    /*物资入库*/
+    $scope.visible = false;
+    $scope.visible1 = false;
+    $scope.storage = false;
+    $scope.material = function () {
+        $scope.storage = !$scope.storage;
+    }
+    $scope.toggle = function () {
+        if($scope.visible1 = true){
+            $scope.visible1=false;
+        }
+        $scope.visible = !$scope.visible;
+    }
+    $scope.toggle1 = function () {
+        if($scope.visible = true){
+            $scope.visible=false;
+        }
+        $scope.visible1 = !$scope.visible1;
+    }
+
+    /*档案库*/
+    $scope.archive = true;
+    $scope.archives = function () {
+        $scope.archive = !$scope.archive;
+    }
+
+    /*知此知彼*/
+    $scope.know= true;
+    $scope.knows = function () {
+        $scope.know = !$scope.know;
+    }
+    /*公告通知*/
+    $scope.notice= false;
+    $scope.notices = function () {
+        $scope.notice = !$scope.notice;
+    }
+
+
+
+
   // 前面下拉导航权限
     materialSer.navPermission().then(function(response){
         if(response.data.code == 0){
@@ -37,7 +78,7 @@ app.controller('materialCtrl', function ($scope,$state) {
         }
     });
     // 设置导航权限
-    materialSer.setPermission().then(function(response){
+    materialSer.navPermission().then(function(response){
         if(response.data.code == 0){
             var data = response.data.data;
             if(data && data.length){
@@ -54,14 +95,16 @@ app.controller('materialCtrl', function ($scope,$state) {
         }
     });
     $scope.showsList = [
-        {id:"1",item:"吸收资金",menuList:[
-            {name:'资金进入申请',msg:'apply'},
-            {name2:'有误记录',msg:'record'},
-            {name3:'已确认',msg:'sure'}
-            ,{name4:'权责分配',msg:'respons'}
-        ],showIs:false},
-        {id:"6",item:"设置",menuList:[{name19:'设置',msg:'setting'}],showIs:false},
+        {id:"1",item:"物资入库",menuList:[
+            {name1:'物资入库',msg:'materialAnalyzeannual'},
+            {name2:'库存预警',msg:'stockwarning'}
+        ],showIs:false}
     ];
+    $scope.showsList1 = [
+        {id:"1",item:"设置",menuList:[{name1:'设置',msg:'setting'}],showIs:false},
+    ];
+
+
     if(active){
         for(var i = 0; i < $scope.showsList.length; i++) {
             var n = $scope.showsList[i].menuList;
@@ -90,7 +133,10 @@ app.controller('materialCtrl', function ($scope,$state) {
             }
         }
     };
+
 });
+
+
 app.directive('mod',function(){
     return{
         restrict:'AE',
@@ -112,7 +158,7 @@ app.directive('mod',function(){
                     if(tag=="P"){
                         title =  $(".list-head span").eq(Index).text();
                     }else if(tag=="SPAN"){
-                        title = $(this).parent().siblings('.see-parent').children().eq(Index).text();
+                        title = $(this).parent().siblings('.see-head').children().eq(Index).text();
                     }
                     var conText = elements.text();
                     $('.see-type').text(title);
@@ -134,5 +180,8 @@ app.directive('mod',function(){
         }
     }
 });
+
+
+
 
 

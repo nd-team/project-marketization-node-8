@@ -1,35 +1,142 @@
-<div class="material-lists">
-    <div class="material-body">
-        <ul>
-            <li ng-repeat="lists in basicLists.data"  style="display: {{lists._delete?'none':'block'}};">
-                <div class="box">
-                    <h1 class="box-head">
-                        <p class="head-right">
-                            <span>项目组/部门</span>
-                            <i>{{::lists.area}}</i>
+<div class="list">
+    <ul class="table">
+        <li class="list-head">
+            <span>
+              <label class="tick"></label>
+             </span>
+            <span>序号</span>
+            <span>项目组/部门</span>
+            <span>入库类型</span>
+            <span>入库编码</span>
+            <span>物资名称</span>
+            <span class="operate">操作</span>
+        </li>
+        <li class="list-all"  ng-repeat="lists in materLists.data">
+            <div class="list-text {{lists._selectList?'selectList':''}}"  ng-click="selectList(lists)" >
+                <p>
+                    <span class="tick {{lists._selectList?'select':''}}"></span>
+                </p>
+                <p>{{$index+1+num}}</p>
+                <p>{{::lists.projectGroup}}</p>
+                <p>{{::lists.instockType|statusCover}}</p>
+                <p>{{::lists.stockEncoding}}</p>
+                <p>{{::lists.materialName}}</p>
+                <p ng-click="moreList(lists)">
+                    <a href="javascript:void(0)" class="more">
+                        <svg role="img" class="search2">
+                            <use xlink:href="#search2"></use>
+                        </svg>
+                        查看详细
+                    </a>
+                </p>
+            </div>
+            <div class="can"  style="display: {{lists._moreList?'block':'none'}};" >
+                <ul class="can-see"  >
+                    <li>
+                        <p class="see-head">
+                            <span>物资类型</span>
+                            <span>申购日期</span>
+                            <span>申购人</span>
+                            <span>物资型号</span>
                         </p>
-                        <p class="check-two" >
-                            <!--<input type="checkbox" checked="checked" class="checked-none" data-style="checked" >-->
-                            <span class="tick {{lists._selectList?'selectList':''}}" ng-click="selectList(lists)"></span>
+                        <p class="see-body">
+                            <span>{{::lists.materialType}}</span>
+                            <span>{{::lists.buyDate}}</span>
+                            <span>{{::lists.requisitioner}}</span>
+                            <span>{{::lists.materialModel}}</span>
                         </p>
-                    </h1>
-                    <div class="box-bottom">
-                        <h2 class="bottom-left">
-                            <p>物质类型</p>
-                            <p>设备名称</p>
-                            <p>下限值</p>
-                            <p>上限值</p>
-                        </h2>
-                        <h2 class="bottom-right">
-                            <p>{{::lists.materialType}}</p>
-                            <p>{{::lists.deviceName}}</p>
-                            <p>{{::lists.lowerValue}}</p>
-                            <p>{{::lists.upperValue}}</p>
-                        </h2>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                    </li>
+                    <li>
+                        <p class="see-head">
+                            <span>数量</span>
+                            <span>单位</span>
+                            <span>单价(元)</span>
+                            <span>总额(元)</span>
+                        </p>
+                        <p class="see-body">
+                            <span>{{::lists.quantity}}</span>
+                            <span>{{::lists.unit}}</span>
+                            <span>{{::lists.unitPrice}}</span>
+                            <span>{{::lists.totalSum}}</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="see-head">
+                            <span>途径</span>
+                            <span>购买网址</span>
+                            <span>入库日期</span>
+                            <span>存储地区</span>
+                        </p>
+                        <p class="see-body">
+                            <span>{{::lists.approach}}</span>
+                            <span>{{::lists.buyWebsites}}</span>
+                            <span>{{::lists.instockDate}}</span>
+                            <span>{{::lists.storageArea}}</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="see-head">
+                            <span>存储位置</span>
+                            <span>物资状态</span>
+                            <span>使用状态</span>
+                            <span>外借人</span>
+                        </p>
+                        <p class="see-body">
+                            <span>{{::lists.storageSite}}</span>
+                            <span>{{::lists.materialState|Cover}}</span>
+                            <span>{{::lists.useState|Use}}</span>
+                            <span>{{::lists.lender}}</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="see-head">
+                            <span>外借地区</span>
+                            <span>外借日期</span>
+                            <span>购买人</span>
+                            <span>购买日期</span>
+                        </p>
+                        <p class="see-body">
+                            <span>{{::lists.lendArea}}</span>
+                            <span>{{::lists.lendDate}}</span>
+                            <span>{{::lists.purchaser}}</span>
+                            <span>{{::lists.purchaseDate}}</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="see-head">
+                            <span>是否有保修卡</span>
+                            <span>保修联系人</span>
+                            <span>保修联系电话</span>
+                            <span>保修期限(月)</span>
+                        </p>
+                        <p class="see-body">
+                            <span>{{::lists.ifWarrantyCard|cos}}</span>
+                            <span>{{::lists.warrantyCardContact}}</span>
+                            <span>{{::lists.warrantyPhone}}</span>
+                            <span>{{::lists.warrantyExpire}}</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="see-head">
+                            <span>是否有发票</span>
+                            <span>物资负责人</span>
+                            <span>数据来源</span>
+                            <span>备注</span>
+                        </p>
+                        <p class="see-body">
+                            <span>{{::lists.ifInvoice|cos}}</span>
+                            <span>{{::lists.goodPrincipal}}</span>
+                            <span>{{::lists.dataSource}}</span>
+                            <span>{{::lists.comment}}</span>
+                        </p>
+                    </li>
+
+                </ul>
+                <p class="pick" ng-click="moreList(lists)">收起></p>
+
+            </div>
+        </li>
+      </ul>
     </div>
         <div class="module">
             <div class="see-module">
@@ -41,7 +148,6 @@
         <footer class="footer">
             <pagination count="abili.itemsCount" take="abili.take" activate="abili.activatePage"></pagination>
         </footer>
-    </div>
     <div class="delete mod" ng-show="delShow">
         <div class="del-head">
             <h5>温馨提示</h5>
