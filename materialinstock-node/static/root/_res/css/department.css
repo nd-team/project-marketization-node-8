@@ -782,10 +782,10 @@ header .art-right .selected-down:after {
   height: 0;
   border-style: solid;
   border-width: 10px 10px 15px 10px;
-  border-color: transparent transparent #ffffff transparent;
+  border-color: transparent transparent #d0e2fd transparent;
   position: absolute;
   right: 13%;
-  top: -26px;
+  top: -25px;
   margin-left: -20px;
 }
 
@@ -3910,10 +3910,10 @@ header .art-right .selected-down:after {
   height: 0;
   border-style: solid;
   border-width: 10px 10px 15px 10px;
-  border-color: transparent transparent #ffffff transparent;
+  border-color: transparent transparent #d0e2fd transparent;
   position: absolute;
   right: 13%;
-  top: -26px;
+  top: -25px;
   margin-left: -20px;
 }
 
@@ -5869,7 +5869,7 @@ header .art-right .selected-down:after {
 
 /*设置中的多选*/
 
-.select {
+.multiple-select {
   width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5884,7 +5884,7 @@ header .art-right .selected-down:after {
   text-indent: 1.5em;
 
 }
-.select .select-text{
+.multiple-select .select-text{
   width: 60%;
   line-height: 40px;
   height: 40px;
@@ -5895,30 +5895,30 @@ header .art-right .selected-down:after {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.select .select-text.verifyError{
+.multiple-select .select-text.verifyError{
   border: 1px solid #e4e4e4;
 }
 
-.select .mymultiselect{
+.multiple-select .mymultiselect{
   position:absolute;
   width:100%;
   z-index:10;
 }
-.select .mymultiselect .btn{
+.multiple-select .mymultiselect .btn{
   width:100px;
   position:absolute;
   right:0;
   height:40px;
   background:none;
 }
-.select .mymultiselect .dropdown-menu{
+.multiple-select .mymultiselect .dropdown-menu{
   width:100%;
   background:#fff;
   border:1px solid #e4e4e4;
   position:absolute;
   top:39px;
 }
-.select .mymultiselect .dropdown-menu li{
+.multiple-select .mymultiselect .dropdown-menu li{
   margin:0;
   height:20px;
   width:100%;
@@ -5926,39 +5926,39 @@ header .art-right .selected-down:after {
   text-indent:20px;
 }
 
-.select .mymultiselect .dropdown-menu li a{
+.multiple-select .mymultiselect .dropdown-menu li a{
   display:inline-block;
   width:100%;
   height:19px;
   color:#333;
 }
-.select .mymultiselect .dropdown-menu li a span.glyphicon-ok{
+.multiple-select .mymultiselect .dropdown-menu li a span.glyphicon-ok{
   background-size:100% 100%;
   display:inline-block;
   width:12px;
   height:12px;
 
 }
-.select .mymultiselect .dropdown-menu li a:hover{
+.multiple-select .mymultiselect .dropdown-menu li a:hover{
   background:#5a9bfd;
   color:#fff;
 }
 
-.select .select-input {
+.multiple-select .select-input {
   width: 100%;
 }
 
-.select .arrow-down {
+.multiple-select .arrow-down {
   position: absolute;
   right: 10px;
   top: 10px;
 }
 
-.select .arrow-down:hover {
+.multiple-select .arrow-down:hover {
   cursor: pointer;
 }
 
-.select .wrap-op {
+.multiple-select .wrap-op {
   display: none;
   position: absolute;
   background: #f6f6f6;
@@ -5969,7 +5969,7 @@ header .art-right .selected-down:after {
 }
 
 
-.select .wrap-op .option {
+.multiple-select .wrap-op .option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5982,14 +5982,14 @@ header .art-right .selected-down:after {
   overflow-y: auto;
 }
 
-.select .wrap-op .option a {
+.multiple-select .wrap-op .option a {
   height: 29px;
   line-height: 29px;
   color: #333;
   padding-left: 15px;
 }
 
-.select .wrap-op .option a:hover {
+.multiple-select .wrap-op .option a:hover {
   background: #cbedf9;
 }
 
